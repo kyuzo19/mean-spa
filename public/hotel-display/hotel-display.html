@@ -1,0 +1,12 @@
+<h1>{{hotel.name}} rating:{{hotel.stars}}</h1>
+<p>{{hotel.description}}</p>
+<ul ng-repeat="review in hotel.reviews">
+	<li>Name: {{review.name}} Review: {{review.review}} Rating: {{review.rating}}</li>
+</ul>
+
+<form name="submitForm" ng-submit="submitReview()">
+	Name:<input type="text" required ng-model="name">
+	Review: <input type="text" required ng-model="review">
+	Rating<input type="number" ng-model="rating">
+	<button type="submit">Submit</button>
+</form>

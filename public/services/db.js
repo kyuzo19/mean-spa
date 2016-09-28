@@ -1,8 +1,9 @@
-/*angular.module("meanApp", [])
+angular.module("meanApp2", [])
 .factory("mongooseData", function ($http) {
     var db = {};
     
     function response (res) {
+        console.log(res);
         return res;
     };
     
@@ -23,4 +24,4 @@
     };
     
     return db;
-})*/
+})

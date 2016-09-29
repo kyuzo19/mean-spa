@@ -7,6 +7,19 @@ angular.module("meanApp3", [])
 		$scope.hotel = res.data
 	});
 	
+	
+	$scope.submitReview = function () {
+		var review = {
+			name: $scope.name,
+			review: $scope.review,
+			rating: $scope.rating
+		};
+		
+		mongooseData.hotelReview(hotelId, review).then(function(){
+			console.log("add review success");
+			$route.reload();
+		})
+	};
 
 	
 }]);

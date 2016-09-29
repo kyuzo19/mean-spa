@@ -20,7 +20,7 @@ angular.module("meanApp2", [])
     };
     
     db.hotelReview = function (id, review) {
-        return $http.get("/api/hotels/" + id + "/reviews/" + review).then(response).catch(err);
+        return $http.post("/api/hotels/" + id + "/reviews/",review).then(response).catch(err);
     };
     
     return db;

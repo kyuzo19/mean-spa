@@ -47,3 +47,4 @@ process.on("SIGTERM", function () {
 
 //schema
 require("./hotels.model");
+require("./users.model")

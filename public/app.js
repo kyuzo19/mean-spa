@@ -9,4 +9,8 @@ angular.module("meanApp", ["ngRoute", "meanApp1", "meanApp2", "meanApp3"])
 			templateUrl: "hotel-display/hotel-display.html",
 			controller: "hotelDisplayController"
 		})
+		.when("/login", {
+			templateUrl: "login/login.html",
+			controller: "loginController"
+		})
 })

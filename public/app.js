@@ -13,4 +13,8 @@ angular.module("meanApp", ["ngRoute", "meanApp1", "meanApp2", "meanApp3"])
 			templateUrl: "login/login.html",
 			controller: "loginController"
 		})
+		.when("/register", {
+			templateUrl: "register/register.html",
+			controller: "registerController"
+		})
 })

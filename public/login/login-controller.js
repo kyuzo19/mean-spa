@@ -1,7 +1,14 @@
 angular.module("meanApp")
-.controller("loginController", ["$scope",function ($scope){
+.controller("loginController", ["$scope", "registerService", function ($scope, registerService){
 	
 	$scope.login = function(){
-		console.log("logging in");	
+		var data = {
+			username: $scope.username,
+			password: $scope.password
+		};
+		
+		registerService.login(data).then(function(res){
+			console.log(res);
+		})
 	};
 }])

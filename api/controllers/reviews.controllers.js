@@ -8,8 +8,22 @@ module.exports.reviewsGetAll = function (req, res) {
         .findById(hotelId)
         .select("reviews")
         .exec(function (err, reviews) {
+			var response = {
+				status : 200,
+				data : reviews
+			};
+			if (err) {
+				response.status = 500;
+				response.data = err;
+			} else if (!reviews) {
+				response.status = 404;
+				response.data = {
+					message : "Hotel not found"
+				}
+			}
             res
-                .json(reviews)
+				.status(response.status)
+				.json(response.data)
         })
 };
 
@@ -21,8 +35,16 @@ module.exports.reviewsGetOne = function (req, res) {
         .findById(hotelId)
         .select("reviews")
         .exec(function (err, hotel) {
-            res 
-                .json(hotel.reviews.id(reviewId));
+			if (err) {
+				res
+					.status(500)
+					.json(err)
+			} else {
+				res 
+					.status(200)
+					.json(hotel.reviews.id(reviewId));
+			}
+            
         })
 };
 

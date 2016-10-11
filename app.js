@@ -1,9 +1,10 @@
+
+//connect to mlab database
 require("./api/data/db.js");
 var express = require("express");
 var app = express();
 var path = require("path");
 var bodyParser = require("body-parser");
-
 var routes = require("./api/routes");
 
 //setting port to use
@@ -24,7 +25,7 @@ app.use("/fonts", express.static(__dirname + "/fonts"));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-//add some routeing
+//add some routing
 app.use("/api", routes);
 
 //listen for request

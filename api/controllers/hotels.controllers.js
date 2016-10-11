@@ -13,30 +13,42 @@ var _splitArray = function(input) {
 
 module.exports.hotelsGetAll = function (req, res) {
 	console.log("Retrieving list of Hotels");
-    
     Hotel
         .find()
         .exec(function (err, hotels) {
             if(err) {
                 res
+					.status(400)
                     .json(err)
             } else {
                 res
+					.status(200)
                     .json(hotels)
             }
-            
-        })
+            })
 };
 
 module.exports.hotelsGetOne = function (req, res) {
 	console.log("Retrieving one hotel");
-    var hoteldId = req.params.hotelId;
-    
+    var hoteldId = req.params.hotelId;  
     Hotel   
         .findById(hoteldId)
         .exec(function (err, hotel) {
-            res 
-                .json(hotel)
+			var response = {
+				status : 200,
+				message : hotel
+			};
+			if (err) {
+				response.status = 500;
+				response.message = err		
+			} else if (!hotel){
+				response.status = 404;
+				response.message = "hotel not found " + hoteldId
+			}	
+			res
+				.status(response.status)
+				.json(response.message)
+            
         });
 };
 
@@ -55,9 +67,10 @@ module.exports.hotelsAddOne = function (req, res) {
                 coordinates: [parseFloat(req.body.lng), parseFloat(req.body.lat)]
             }
         }, function (err, hotel) {
-            
             if (err) {
-                console.log(err);
+                res
+					.status(400)
+					.json(err)
             } else {
                 res 
                     .status(201)

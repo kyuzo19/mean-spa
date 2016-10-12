@@ -14,6 +14,7 @@ router
 	.route("/hotels/:hotelId")
 	.get(ctrlHotels.hotelsGetOne)
     .put(ctrlHotels.hotelsUpdateOne)
+	.delete(ctrlHotels.deleteHotel)
 
 router
 	.route("/hotels/:hotelId/reviews")
@@ -24,6 +25,7 @@ router
 	.route("/hotels/:hotelId/reviews/:reviewId")
 	.get(ctrlReviews.reviewsGetOne)
 	.put(ctrlReviews.reviewUpdate)
+	.delete(ctrlReviews.reviewDelete)
 
 router
 	.route("/users/register")

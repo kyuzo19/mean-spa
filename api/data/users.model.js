@@ -15,4 +15,4 @@ var userSchema = new mongoose.Schema({
   }
 });
 
-mongoose.model('Emp', userSchema);
+mongoose.model('Users', userSchema);

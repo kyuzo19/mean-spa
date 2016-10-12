@@ -57,6 +57,7 @@ module.exports.reviewPost = function (req, res) {
 		.exec(function (err, hotelreview) {
 			if (err) {
 				res
+					.status(500)
 					.json(err)
 			} else {
 				hotelreview.reviews.push({
@@ -66,8 +67,16 @@ module.exports.reviewPost = function (req, res) {
 				});
 				
 				hotelreview.save(function (err, reviewUpdate) {
-					res
-						.json(reviewUpdate.reviews[reviewUpdate.reviews - 1])
+					if (err) {
+						res
+							.status(500)
+							.json(err)
+					} else {
+						res
+							.status(201)
+							.json(reviewUpdate.reviews[reviewUpdate.reviews.length - 1])
+					}
+					
 				});
 			};
 			
@@ -90,7 +99,40 @@ module.exports.reviewUpdate = function (req, res) {
 			
 			reviews.save(function (err, reviewUpdate) {
 				res
+				
 					.json(reviewUpdate);
 			});
+		})
+};
+
+module.exports.reviewDelete = function (req, res) {
+	var hotelId = req.params.hotelId;
+	var reviewId = req.params.reviewId;
+	
+	Hotel
+		.findById(hotelId)
+		.select("reviews")
+		.exec(function (err, data) {
+			if (err) {
+				res
+					.status(500)
+					.json(err)
+			} else {
+				
+				data.reviews.id(reviewId).remove();
+				data.save(function (err, data) {
+					if(err) {
+						res
+							.status(500)
+							.json(err)
+					} else {
+						res
+							.status(200)
+							.json(data)
+					}
+					
+				})
+				
+			}
 		})
 };

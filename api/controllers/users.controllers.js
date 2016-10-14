@@ -28,6 +28,7 @@ module.exports.register = function (req, res) {
 };
 
 module.exports.login = function (req, res) {
+	
 	var username = req.body.username;
 	var password = req.body.password;
 	
@@ -55,4 +56,28 @@ module.exports.login = function (req, res) {
 					}
 			}
 		})
+};
+
+module.exports.authenticate = function (req, res, next) {
+	
+	if (req.headers.authorization) {
+		var token = req.headers.authorization.split(" ")[1]; //Authorization Bearer xxx
+		jwt.verify(token, "s3cr3t", function (err, decoded) {
+			if (err) {
+				res
+					.status(401)
+					.json("unauthorized")
+			} else {
+				req.user = decoded.username;
+				next()
+			}
+		})
+ 	} else {
+		res
+			.status(403)
+			.json("No token Provided")
+	}
+
+	
+	
 };

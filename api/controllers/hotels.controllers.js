@@ -12,7 +12,9 @@ var _splitArray = function(input) {
 };
 
 module.exports.hotelsGetAll = function (req, res) {
+	
 	console.log("Retrieving list of Hotels");
+	
     Hotel
         .find()
         .exec(function (err, hotels) {
@@ -99,6 +101,7 @@ module.exports.hotelsUpdateOne = function (req, res) {
 			
 			hotel.save(function (err, hotelUpdate) {
 				res
+					.status(200)
 					.json(hotelUpdate)
 			});
 			

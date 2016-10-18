@@ -11,6 +11,8 @@ angular.module("meanApp")
 	data.login = function (data) {
 		return $http.post("/api/users/login",data).then(function(res){
 			return res;
+		}).catch(function(err){
+			return err;
 		})
 	}
 	return data;

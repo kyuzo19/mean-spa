@@ -1,4 +1,4 @@
-angular.module("meanApp", ["ngRoute", "meanApp1", "meanApp2", "meanApp3"])
+angular.module("meanApp", ["ngRoute", "meanApp1", "meanApp2", "meanApp3", "angular-jwt"])
 .config(function ($routeProvider) {
 	$routeProvider
 		.when("/hotels", {

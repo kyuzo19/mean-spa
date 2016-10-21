@@ -14,7 +14,7 @@
 	<link href="css/custom.css" rel="stylesheet">
     <body>
 		
-		<!--<nav class="navbar navbar-default navbar-fixed-top" ng-controller="loginController as lgn">
+		<nav class="navbar navbar-default navbar-fixed-top" ng-controller="loginController as lgn">
  			<div class="container">
  			  <div class="navbar-header">
  			    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -27,10 +27,10 @@
  			  </div>
  			  <div id="navbar" class="collapse navbar-collapse">
  			    <ul class="nav navbar-nav">
- 			      <li ng-class="vm.isActiveTab('')" class="active"><a href="#/">Home</a></li>
- 			      <li ng-class="vm.isActiveTab('hotels')"><a href="#/hotels">Hotels</a></li>
- 			      <li ng-class="vm.isActiveTab('register')" ng-if="!vm.isLoggedIn()"><a href="#/register">Register</a></li>
- 			      <li ng-class="vm.isActiveTab('profile')" ng-if="vm.isLoggedIn()"><a href="#/profile">Profile</a></li>
+ 			      <li ng-class="lgn.isTabActive('')" class="active"><a href="#/">Home</a></li>
+ 			      <li ng-class="lgn.isTabActive('hotels')"><a href="#/hotels">Hotels</a></li>
+ 			      <li ng-class="lgn.isTabActive('register')" ng-if="!lgn.isLoggedIn()"><a href="#/register">Register</a></li>
+ 			      <li ng-class="lgn.isTabActive('profile')" ng-if="vm.isLoggedIn()"><a href="#/profile">Profile</a></li>
  			    </ul>
  			    <form ng-if="!lgn.isLoggedIn()" class="navbar-form navbar-right" role="login" ng-submit="lgn.login()">
  			     <div class="form-group" ng-class="{'has-error': vm.error}">
@@ -41,14 +41,14 @@
  			     </div>
  			     <button type="submit" class="btn btn-sm btn-success">Login</button>
  			   </form>
- 			   <ul ng-if="lgn.isLoggedIn()" class="nav navbar-nav navbar-right">
+ 			   <ul ng-cloak ng-if="lgn.isLoggedIn()" class="nav navbar-nav navbar-right">
  			     <li><p class="navbar-text">Welcome back {{ lgn.loggedInUser }}</p></li>
  			     <li><button class="navbar-btn btn-sm btn-info" ng-click="lgn.logout()">Logout</button></li>
  			   </ul>
  			  </div>
  			</div>
-		</nav>-->
-		<nav-panel-two></nav-panel-two>
+		</nav>
+		<!--<nav-panel-two></nav-panel-two>-->
 		
        	<div class="container" ng-view></div>
         

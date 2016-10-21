@@ -34,7 +34,13 @@ angular.module("meanApp")
 		authStatus.authStatus = false;
 		delete $window.sessionStorage.token;
 		$location.path("/");
-	}
+	};
+	
+	lgn.isTabActive = function (url) {
+		var currentPath = $location.path().split("/")[1];
+		
+		return (url === currentPath ? "active" : "");
+	};
 	
 	
 }])

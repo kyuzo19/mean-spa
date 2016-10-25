@@ -1,5 +1,5 @@
 angular.module("meanApp")
-.controller("registerController", ["$scope","registerService", function ($scope, registerService){
+.controller("registerController", ["$scope","registerService", "$http", function ($scope, registerService, $http){
 		
 	
 	$scope.register = function () {
@@ -10,17 +10,19 @@ angular.module("meanApp")
 			};
 		
 		if (!$scope.password || !$scope.passwordConfirm) {
-			console.log("please supply password");
+			$scope.errorMessage = "please supply password";
 		} else {
 			if ($scope.password !== $scope.passwordConfirm) {
-			console.log("Password mismatch");
+				$scope.errorMessage = "Password mismatch"
 			} else {
 			
-				registerService.reg(data).then(function(){
+				$http.post("/api/users/register", data).then(function(){
 					console.log("register successful");
-			
+			        $scope.alertMessage = "Registration successful";
+					$scope.errorMessage = "";
 				}).catch(function (err) {
 					console.log(err);
+                    
 				})
 			}	
 		};

@@ -1,4 +1,12 @@
-<form>
+<div class="alert alert-success" ng-if="alertMessage">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    {{alertMessage}}
+</div>
+<div class="alert alert-danger" ng-if="errorMessage">
+	<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+	{{errorMessage}}
+</div>
+<form ng-hide="alertMessage">
 	<div class="form-group">
 		<label for="username">Username:</label>
 		<input type="text" required ng-model="username" class="form-control" id="username">
